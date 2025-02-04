@@ -18,7 +18,7 @@ cd number-classification
 To run the API, execute the following command:
 
 ```bash
-python app.py
+python run.py
 ```
 
 The API will be available at http://127.0.0.1:5000.
@@ -28,7 +28,7 @@ The API will be available at http://127.0.0.1:5000.
 ### Classify Number
 
 ```http
-GET /classify?number={number}
+GET /api/classify-number?number={number}
 ```
 
 **Parameters:**
@@ -42,7 +42,7 @@ GET /classify?number={number}
   "number": 28,
   "is_prime": false,
   "is_perfect": true,
-  "properties": ["even", "perfect"],
+  "properties": ["even", "armstrong"],
   "digit_sum": 10,
   "fun_fact": "28 is a perfect number!"
 }
