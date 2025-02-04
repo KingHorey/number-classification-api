@@ -16,7 +16,6 @@ def is_perfect(x: int) -> bool:
     divisor = [1]
     round_num = int(math.sqrt(x) + 1)
     i = 2
-    print(round_num)
     for i in range(2, round_num):
         if x % i == 0:
             divisor.append(i)

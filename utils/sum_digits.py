@@ -6,7 +6,6 @@ def sum_digits(x: int) -> int:
     """
     # Initialize sum to 0
     sum = 0
-    print('in int', x)
 
     # Iterate over the digits of the number
     while x != 0:
