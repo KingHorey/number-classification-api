@@ -1,7 +1,7 @@
 import math
 
 
-def is_perfect(x: int) -> bool:
+async def is_perfect(x: int) -> bool:
     """_summary_
 
     Args:

@@ -1,7 +1,7 @@
 cache = {}
 
 
-def sum_digits(x: int) -> int:
+async def sum_digits(x: int) -> int:
     """
     Function to get the sum of the digits of a number.
     Args:

@@ -1,1 +1,1 @@
-is_perfect(6)
+async

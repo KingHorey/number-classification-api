@@ -1,7 +1,7 @@
 import math
 
 
-def is_prime(x: int):
+async def is_prime(x: int):
     """ Summary:
                 Function to check if a given  number is a prime number
 

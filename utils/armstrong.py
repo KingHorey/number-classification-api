@@ -1,7 +1,7 @@
 import math
 
 
-def check_armstrong(x: int):
+async def check_armstrong(x: int):
     """_summary_
 
     Args:

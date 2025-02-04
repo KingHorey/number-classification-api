@@ -1,3 +1,5 @@
+import asyncio
+
 from flask_restful import Resource
 from flask import request
 
@@ -17,15 +19,22 @@ class GetNumberInfo(Resource):
         query_parameters = request.args.get('number')
         # print(query_parameters)
         number = query_parameters.isdigit()
-        parsed_int = int(query_parameters)
-
         if not number:
             return {"number": "alphabet", "error": True}, 400
-        sum_of_digits = sum_digits(parsed_int)
-        check_prime = is_prime(parsed_int)
-        check_perfect = is_perfect(parsed_int)
-        properties = check_properties(parsed_int)
-        fun_fact = get_fun_fact(parsed_int)
+        try:
+            parsed_int = int(query_parameters)
 
-        # print(sum_of_digits)
-        return {"number": query_parameters, "is_prime": check_prime,  "is_perfect": check_perfect, "properties": properties, "digit_sum": sum_of_digits, "fun_fact": fun_fact}, 200
+            if not number:
+                return {"number": "alphabet", "error": True}, 400
+            fun_fact = asyncio.run(get_fun_fact(parsed_int))
+            sum_of_digits = asyncio.run(sum_digits(parsed_int))
+            check_prime = asyncio.run(is_prime(parsed_int))
+            check_perfect = asyncio.run(is_perfect(parsed_int))
+            properties = asyncio.run(check_properties(parsed_int))
+
+            # print(sum_of_digits)
+            return {"number": query_parameters, "is_prime": check_prime,  "is_perfect": check_perfect, "properties": properties, "digit_sum": sum_of_digits, "fun_fact": fun_fact}, 200
+        except ValueError:
+            return {"number": "alphabet", "error": True}, 400
+        except Exception as e:
+            return {"error": True}, 500
