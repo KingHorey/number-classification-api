@@ -1,6 +1,8 @@
 import math
+from functools import lru_cache
 
 
+@lru_cache(maxsize=None, typed=True)
 async def is_prime(x: int):
     """ Summary:
                 Function to check if a given  number is a prime number
@@ -20,6 +22,8 @@ async def is_prime(x: int):
         return False
 
     i = 5
+    x = abs(x)
+
     while i <= math.sqrt(x):
         if x % i == 0 or x % (i + 2) == 0:
             return False

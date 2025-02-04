@@ -1,10 +1,9 @@
 
+from functools import lru_cache
 import httpx
 
 
-fun_fact_cache = {}
-
-
+@lru_cache(maxsize=None, typed=True)
 async def get_fun_fact(x: int) -> str:
     """
     Function to get a fun fact about a number.
@@ -13,11 +12,7 @@ async def get_fun_fact(x: int) -> str:
     Returns:
         str: Fun fact about the number.
     """
-    if x in fun_fact_cache:
-        return fun_fact_cache[x]
-
     async with httpx.AsyncClient() as client:
         url = f"http://numbersapi.com/{x}/math"
         response = await client.get(url)
-        fun_fact_cache[x] = response.text
         return response.text

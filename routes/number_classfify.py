@@ -17,15 +17,15 @@ class GetNumberInfo(Resource):
                 get method to get info about number
         """
         query_parameters = request.args.get('number')
+        if not query_parameters:
+            return {"number": "", "error": True}, 400
         # print(query_parameters)
-        number = query_parameters.isdigit()
-        if not number:
-            return {"number": "alphabet", "error": True}, 400
-        try:
-            parsed_int = int(query_parameters)
+        number = int(query_parameters)
 
-            if not number:
-                return {"number": "alphabet", "error": True}, 400
+        if not number:
+            return {"number": "abc", "error": True}, 400
+        try:
+            parsed_int = number
             fun_fact = asyncio.run(get_fun_fact(parsed_int))
             sum_of_digits = asyncio.run(sum_digits(parsed_int))
             check_prime = asyncio.run(is_prime(parsed_int))
@@ -33,8 +33,8 @@ class GetNumberInfo(Resource):
             properties = asyncio.run(check_properties(parsed_int))
 
             # print(sum_of_digits)
-            return {"number": query_parameters, "is_prime": check_prime,  "is_perfect": check_perfect, "properties": properties, "digit_sum": sum_of_digits, "fun_fact": fun_fact}, 200
+            return {"number": number, "is_prime": check_prime,  "is_perfect": check_perfect, "properties": properties, "digit_sum": sum_of_digits, "fun_fact": fun_fact}, 200
         except ValueError:
-            return {"number": "alphabet", "error": True}, 400
-        except Exception as e:
+            return {"number": "abc", "error": True}, 400
+        except Exception:
             return {"error": True}, 500

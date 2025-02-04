@@ -1,6 +1,8 @@
+from functools import lru_cache
 import math
 
 
+@lru_cache(maxsize=None, typed=True)
 async def is_perfect(x: int) -> bool:
     """_summary_
 
@@ -11,6 +13,7 @@ async def is_perfect(x: int) -> bool:
             bool: _description_
 
     """
+    x = abs(x)
     if x < 2:
         return False
     divisor = [1]
