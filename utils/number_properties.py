@@ -1,16 +1,16 @@
-from functools import lru_cache
+from async_lru import alru_cache
 
 from .armstrong import check_armstrong
 
 
-@lru_cache(maxsize=None, typed=True)
-async def check_properties(x: int) -> list[str, str]:
+@alru_cache(maxsize=None, typed=True)
+async def check_properties(x: int) -> list[str]:
     """_summary_
     Args:
             x (int): _description_
 
     Returns:
-            list[str, str]: _description_
+            list[str]: _description_
     """
     properties = []
     armstrong = await check_armstrong(x)

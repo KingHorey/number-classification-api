@@ -1,8 +1,8 @@
-from functools import lru_cache
+from async_lru import alru_cache
 import math
 
 
-@lru_cache(maxsize=None, typed=True)
+@alru_cache(maxsize=None, typed=True)
 async def is_perfect(x: int) -> bool:
     """_summary_
 

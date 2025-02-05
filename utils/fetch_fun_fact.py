@@ -1,9 +1,9 @@
 
-from functools import lru_cache
+from async_lru import alru_cache
 import httpx
 
 
-@lru_cache(maxsize=None, typed=True)
+@alru_cache(maxsize=None, typed=True)
 async def get_fun_fact(x: int) -> str:
     """
     Function to get a fun fact about a number.

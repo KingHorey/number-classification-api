@@ -1,8 +1,8 @@
 import math
-from functools import lru_cache
+from async_lru import alru_cache
 
 
-@lru_cache(maxsize=None, typed=True)
+@alru_cache(maxsize=None, typed=True)
 async def is_prime(x: int):
     """ Summary:
                 Function to check if a given  number is a prime number

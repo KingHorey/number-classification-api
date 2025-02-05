@@ -1,8 +1,8 @@
 import math
-from functools import lru_cache
+from async_lru import alru_cache
 
 
-@lru_cache(maxsize=None, typed=True)
+@alru_cache(maxsize=None, typed=True)
 async def check_armstrong(x: int):
     """_summary_
 
